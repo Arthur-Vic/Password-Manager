@@ -4,12 +4,6 @@ Welcome to my Password Manager project! This Python application provides a conve
 
 ![Password Manager](passwordmanager.png)
 
-## Table of Contents
-
-- [Features](#features)
-- [Usage](#usage)
-
-
 ## Features
 
 - Generate strong and random passwords.
