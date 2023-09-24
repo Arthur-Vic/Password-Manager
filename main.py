@@ -1,7 +1,8 @@
 from tkinter import *
 from tkinter import messagebox
-from tkinter import ttk
 from random import choice, randint, shuffle
+import customtkinter
+from PIL import Image
 import pyperclip
 import json
 
@@ -82,46 +83,59 @@ def find_password():
 
 #Setting up the GUI
 
-import customtkinter
-
 customtkinter.set_appearance_mode('dark')
 customtkinter.set_default_color_theme('dark-blue')
 
 window = customtkinter.CTk()
-# window = Tk()
 window.title("Password Manager")
-window.config(padx=50, pady=50)
+window.config(padx=5, pady=5)
+window.geometry('620x400')
+window.minsize(620,400)
+window.grid_rowconfigure(index=[0], weight=1)
+window.grid_columnconfigure(index=[0], weight=1)
 
-canvas = Canvas(bg='#202020', highlightthickness=0, height=200, width=200)
-logo_img = PhotoImage(file="padlock.png")
-canvas.create_image(100, 100, image=logo_img)
-canvas.grid(row=0, column=1)
+image = Image.open('padlock.png')
+image = customtkinter.CTkImage(light_image=image, dark_image=image, size=(200,200))
+
+#Frame?
+
+main_frame = customtkinter.CTkFrame(master=window, fg_color='transparent')
+main_frame.grid(row=0, column=0, padx=5, pady=5)
 
 #Labels
 
-website_label = customtkinter.CTkLabel(master=window, text="Website:", width=130, anchor='e')
+image_label = customtkinter.CTkLabel(master=main_frame, text='', image=image, width=200)
+image_label.grid(row=0, column=1)
+
+website_label = customtkinter.CTkLabel(master=main_frame, text="Website:", width=130, anchor='e')
 website_label.grid(row=1, column=0, padx=10)
-email_label = customtkinter.CTkLabel(master=window, text="Email/Username:", width=130, anchor='e')
+
+email_label = customtkinter.CTkLabel(master=main_frame, text="Email/Username:", width=130, anchor='e')
 email_label.grid(row=2, column=0, padx=10)
-password_label = customtkinter.CTkLabel(master=window, text="Password:", width=130, anchor='e')
+
+password_label = customtkinter.CTkLabel(master=main_frame, text="Password:", width=130, anchor='e')
 password_label.grid(row=3, column=0, padx=10)
 
 #Entries
 
-website_entry = customtkinter.CTkEntry(master=window, width=250)
+website_entry = customtkinter.CTkEntry(master=main_frame, width=250)
 website_entry.grid(row=1, column=1, pady=5)
-email_entry = customtkinter.CTkEntry(master=window, width=390, placeholder_text="email@email.com")
+
+email_entry = customtkinter.CTkEntry(master=main_frame, width=390, placeholder_text="email@email.com")
 email_entry.grid(row=2, column=1, columnspan=2, pady=5)
-password_entry = customtkinter.CTkEntry(master=window, width=250)
+
+password_entry = customtkinter.CTkEntry(master=main_frame, width=250)
 password_entry.grid(row=3, column=1, pady=5)
 
 # Buttons
 
-search_button = customtkinter.CTkButton(master=window, text="Search", width=130, command=find_password)
+search_button = customtkinter.CTkButton(master=main_frame, text="Search", width=130, command=find_password)
 search_button.grid(row=1, column=2, padx=10)
-generate_password_button = customtkinter.CTkButton(master=window, text="Generate Password", width=130, command=generate_password)
+
+generate_password_button = customtkinter.CTkButton(master=main_frame, text="Generate Password", width=130, command=generate_password)
 generate_password_button.grid(row=3, column=2, padx=10)
-add_button = customtkinter.CTkButton(master=window, text="Add", width=400, command=save)
+
+add_button = customtkinter.CTkButton(master=main_frame, text="Add", width=400, command=save)
 add_button.grid(row=4, column=1, columnspan=2, pady=5)
 
 window.mainloop()
