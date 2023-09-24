@@ -1,14 +1,10 @@
 {
-    "Amazon": {
-        "email": "angela@gmail.com",
-        "password": "zvE75CEs66m$q*"
+    "Random": {
+        "email": "email@email.com",
+        "password": "W$+Cqr%p%qz2H9Th"
     },
-    "test": {
-        "email": "email",
-        "password": "g*$48BSv6u9!pLp%a"
-    },
-    "test2": {
-        "email": "email",
-        "password": "!YYDS70ZBa&ZG+g"
+    "Random Website": {
+        "email": "email@email.com",
+        "password": "s1k0CI$Gi%N4fr"
     }
 }

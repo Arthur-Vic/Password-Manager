@@ -56,7 +56,7 @@ class MyFrame(customtkinter.CTkFrame):
             }
 
             if len(website) == 0 or len(password) == 0 or len(email) == 0:
-                messagebox.showinfo(title="Error", message="Empty fields detected.")
+                messagebox.showwarning(title="Error", message="Empty fields detected.")
             else:
                 try:
                     with open("data.json", "r") as data_file:
@@ -87,16 +87,17 @@ class MyFrame(customtkinter.CTkFrame):
                 with open("data.json") as data_file:
                     data = json.load(data_file)
             except FileNotFoundError:
-                messagebox.showinfo(title="Error", message="No Data File Found.")
+                messagebox.showerror(title="Error", message="No Data File Found.")
             else:
                 if website in data:
                     email = data[website]["email"]
                     password = data[website]["password"]
                     messagebox.showinfo(title=website, message=f"Email: {email}\nPassword: {password}")
                 else:
-                    messagebox.showinfo(title="Error", message=f"No details for {website} exists.")
+                    messagebox.showerror(title="Error", message=f"No details for {website} exists.")
 
-        # add widgets onto the frame, for example:
+
+
         #Labels
 
         image_label = customtkinter.CTkLabel(master=self, text='', image=image, width=200)
